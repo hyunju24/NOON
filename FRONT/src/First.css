@@ -1,0 +1,49 @@
+* {
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
+html, body {
+  background: linear-gradient(to right, #2DB400, #f3f3f3, #1428A0);
+  background-size: 400% 400%;
+  animation: Gradient 15s ease infinite;
+}
+.title {
+  background: linear-gradient(to right, #2DB400, #f3f3f3, #1428A0);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  width: 100%;
+  text-align: center;
+}
+@keyframes Gradient {
+  0% {
+    background-position: 0% 50%;
+ }
+  50% {
+    background-position: 100% 50%;
+ }
+  100% {
+    background-position: 0% 50%;
+ }
+}
+/* Not needed for demo */
+html, body {
+  height: 100%;
+}
+.wrapper {
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  width: max-content;
+
+}
+.title {
+  font-size: 5vw;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 700;
+}
+
+.btn-blue {
+  border: none;
+  font-size: 1.5rem;
+}
