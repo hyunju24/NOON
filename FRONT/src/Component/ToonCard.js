@@ -1,7 +1,6 @@
 import Card from 'react-bootstrap/Card';
 import {chosenList} from '../app/store'
-import { useRecoilState, useSetRecoilState } from 'recoil';
-import { useState } from 'react';
+import { useRecoilState } from 'recoil';
 
 
 function ToonCard({data}) {

@@ -1,10 +1,8 @@
 // 웹툰 리스트 고르는 페이지
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import '../../CSS/toonlist.css'
-import ToonCard from "../ToonCard";
-import SearchBar from './SearchBar';
-import {allList, chosenList} from '../../app/store'
+import ToonCard from "./ToonCard";
+import {allList, chosenList} from '../app/store'
 import {useRecoilState} from 'recoil'
 
 
@@ -54,7 +52,7 @@ function ChooseList() {
                         onKeyUp={handleChangeSearch}/>
                 </div>
 
-                {!isFiltered &&
+                {isFiltered === 0 &&
                     <div className="container mt-5 mx-5">
                         <div className="row mb-2">
                             <h5 className="fw-bold text-center">🏆 이 달의 인기 웹툰</h5>   
@@ -70,7 +68,7 @@ function ChooseList() {
                         </div>
                     </div>
                 }
-                {isFiltered && (
+                {isFiltered === 1 && (
                     <div className="container mt-5 mx-5">
                         <div className="row mb-2">
                             <h5 className="fw-bold text-center">🔎 검색 결과</h5>   
@@ -95,22 +93,22 @@ function ChooseList() {
                         </div>
                         <div className="col-8">
                             <div className='d-flex justify-content-start'>
-                                    {/* <div> */}
                                         {chosen.map(d => {
                                                 return(
                                                     <div>
-                                                        {/* {d} */}
                                                         <ToonCard data={d}/>
                                                     </div>
                                                 )
                                         })}
-                                {/* </div> */}
                             </div>
                         </div>
                         <div className="d-flex col-2 align-items-end">
-                            <button className="mx-4 mb-4 px-5 py-3 text-white fw-bold btn btn-primary opacity-75">
-                                    결과 보기
-                            </button>
+                            {/* {chosen.length === 5 && */}
+                                <Link to={chosen.length === 5 ? '/result': ''} className='text-decoration-none text-white'>
+                                    <button className={`mx-4 mb-4 px-5 py-3 text-white fw-bold btn opacity-75 ${chosen.length === 5? 'btn-primary':'disabled btn-secondary'}`}>
+                                        결과 보기
+                                    </button>
+                                </Link>
                         </div>
                             
                     </div> 
