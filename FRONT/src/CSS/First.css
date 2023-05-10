@@ -1,8 +1,9 @@
 * {
-  font-family: 'Noto Sans KR', sans-serif;
+  font-family: 'IBM Plex Sans KR', sans-serif;
+
 }
 
-html, body {
+body {
   background: linear-gradient(to right, #2DB400, #f3f3f3, #1428A0);
   background-size: 400% 400%;
   animation: Gradient 15s ease infinite;
@@ -38,8 +39,8 @@ html, body {
 
 }
 .title {
-  font-size: 5vw;
-  font-family: 'Raleway', sans-serif;
+  font-size: 3vw;
+  /* font-family: 'Raleway', sans-serif; */
   font-weight: 700;
 }
 
