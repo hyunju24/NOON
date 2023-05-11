@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import ToonCard from "./ToonCard";
-import {allList, chosenList, popularList} from '../app/store'
+import {allList, chosenList, popularList, sameLine, sameDrawing} from '../app/store'
 import {useRecoilState, useSetRecoilState} from 'recoil'
 import axios from 'axios'
 
@@ -12,6 +12,9 @@ function ChooseList() {
     const setToonAllList = useSetRecoilState(allList)
     const popular = useRecoilState(popularList)[0]
     const setPopular = useSetRecoilState(popularList)
+    const setSameLineList = useSetRecoilState(sameLine)
+    const setSameDrawingList = useSetRecoilState(sameDrawing)
+
     const chosen = useRecoilState(chosenList)[0]
     const [isChosen, setIsChosen] = useState(0)
     const [isFiltered, setIsFiltered] = useState(0)
@@ -19,6 +22,11 @@ function ChooseList() {
     const lengthOfToons = toonAllList.length
 
     // create될 떄 axios 보내서 webtoon list 전체 받아오기
+    // const baseURL = ',
+    // "proxy": "http://10.10.223.67:8000'
+
+    const sameDrawingList = useRecoilState(sameDrawing)[0]
+
     useEffect (()=> {
         // 인기 웹툰 5개
         axios({
@@ -40,6 +48,7 @@ function ChooseList() {
         .then(res => {
             setToonAllList(res.data)
         })
+        .catch(err => console.log(err))
     }, [])
 
 
@@ -79,7 +88,9 @@ function ChooseList() {
             data: onlyId
         })
         .then(res => {
-            console.log(res);
+            // console.log(res.data.items1, res.data.items2);
+            setSameLineList(res.data.items1)
+            setSameDrawingList(res.data.items2)
         })
     }
 

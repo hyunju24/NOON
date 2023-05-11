@@ -19,3 +19,13 @@ export const popularList = atom({
     default: [],
     effects_UNSTABLE: [persistAtom]
 })
+
+export const sameLine = atom({
+    key: 'sameLine',
+    default: []
+})
+
+export const sameDrawing = atom({
+    key: 'sameDrawing',
+    default: []
+})

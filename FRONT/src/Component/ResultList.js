@@ -1,11 +1,14 @@
 import { Link } from "react-router-dom"
-import { allList } from "../app/store"
+import { sameLine, sameDrawing } from "../app/store"
 import { useRecoilState } from "recoil"
 import ToonCard from "./ToonCard"
 
 
 function ResultList() {
-    const toonAllList = useRecoilState(allList)[0]
+    // const toonAllList = useRecoilState(allList)[0]
+    const sameLineList = useRecoilState(sameLine)[0]
+    const sameDrawingList = useRecoilState(sameDrawing)[0]
+
 
     return (
         <div className='pt-0'>
@@ -34,7 +37,7 @@ function ResultList() {
                     </div>
                     <div className="row justify-content-start">
                         {/* <div className="col"> */}
-                            {toonAllList.map(d => {
+                            {sameDrawingList.map(d => {
                                 return(
                                     <ToonCard data={d}/>
                                 )
@@ -50,7 +53,7 @@ function ResultList() {
                     </div>
                     <div className="row justify-content-start">
                         {/* <div className="col"> */}
-                            {toonAllList.map(d => {
+                            {sameLineList.map(d => {
                                 return(
                                     <ToonCard data={d}/>
                                 )
