@@ -49,6 +49,67 @@ html, body {
   font-size: 1.5rem;
 }
 
-.bg-white-op {
+.bg-white-op{
   background-color: rgba(243,243,243,0.55);
+}
+
+
+.modal-bg, .modal-content {
+  background-color: rgba(256,256,256,0.6) !important;
+}
+
+.modal-header {
+  border-bottom: 0 none !important;
+}
+.jumping {
+    animation: jump .6s ease-in-out;
+    animation-iteration-count: 5;
+}
+
+@keyframes jump {
+  0%,
+  60% {
+    transform: translate3d(0, 0, 0) scaleY(1);
+  }
+  30% {
+    transform: translate3d(0, -8px, 0) scaleY(1);
+  }
+  75% {
+    transform: translate3d(0, 3px, 0)  scaleY(.5);
+  }
+  100% {
+    transform: scaleY(1) translate3d(0, 0, 0)
+  }
+}
+.big-font {
+  font-size: 3.2rem;
+  color: #3b3b3b;
+  font-weight: 700;
+}
+
+.font-gray {
+  color: #3b3b3b;
+}
+.sliding-1 {
+  font-size: 3.4rem;
+  color: #3b3b3b;
+  /* animation-name: fadeInOut 3s; */
+  /* animation-delay: 3s; */
+  -webkit-animation: fadeInOut 3s;
+  -webkit-animation-duration: 5s; 
+}
+.sliding-2 {
+  font-size: 3.4rem;
+  color: #3b3b3b;
+  -webkit-animation: fadeInOut 3s;
+  -webkit-animation-duration: 5s; 
+}
+@keyframes fadeInOut {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
