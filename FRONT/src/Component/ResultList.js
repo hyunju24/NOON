@@ -33,9 +33,9 @@ function ResultList() {
                 {/* 그림체가 비슷한 웹툰 */}
                 <div className="container pt-3 rounded border border-0 bg-white-op">
                     <div className="row mb-2">
-                        <h5 className="fw-bold">🎨 그림체가 비슷한 웹툰</h5>   
+                        <h5 className="fw-bold text-center">🎨 그림체가 비슷한 웹툰</h5>   
                     </div>
-                    <div className="row justify-content-start">
+                    <div className="row justify-content-center">
                         {/* <div className="col"> */}
                             {sameDrawingList.map(d => {
                                 return(
@@ -49,9 +49,9 @@ function ResultList() {
                 {/* 줄거리가 비슷한 웹툰 */}
                 <div className="container mt-5 pt-3 rounded border border-0 bg-white-op">
                     <div className="row mb-2">
-                        <h5 className="fw-bold">✒️ 줄거리가 비슷한 웹툰</h5>   
+                        <h5 className="fw-bold text-center">✒️ 줄거리가 비슷한 웹툰</h5>   
                     </div>
-                    <div className="row justify-content-start">
+                    <div className="row justify-content-center">
                         {/* <div className="col"> */}
                             {sameLineList.map(d => {
                                 return(
