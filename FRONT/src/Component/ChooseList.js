@@ -28,27 +28,29 @@ function ChooseList() {
     const sameDrawingList = useRecoilState(sameDrawing)[0]
 
     useEffect (()=> {
-        // 인기 웹툰 5개
-        axios({
-            url: '/top_web',
-            method: 'get',
-            withCredentials: true,
-        })
-        .then(res => {
-            console.log(res.data);
-            setPopular(res.data)
-        })
-        
-        // 웹툰 전체 리스트
-        axios({
-            url: '/sql_read_col',
-            method: 'get',
-            withCredentials: true,
-        })
-        .then(res => {
-            setToonAllList(res.data)
-        })
-        .catch(err => console.log(err))
+        if (toonAllList.length === 0 & popular.length === 0) {
+            // 인기 웹툰 5개
+            axios({
+                url: '/top_web',
+                method: 'get',
+                withCredentials: true,
+            })
+            .then(res => {
+                console.log(res.data);
+                setPopular(res.data)
+            })
+            
+            // 웹툰 전체 리스트
+            axios({
+                url: '/sql_read_col',
+                method: 'get',
+                withCredentials: true,
+            })
+            .then(res => {
+                setToonAllList(res.data)
+            })
+            .catch(err => console.log(err))
+        }
     }, [])
 
 
@@ -162,7 +164,7 @@ function ChooseList() {
                         <div className="d-flex col-2 align-items-end">
                             {/* {chosen.length === 5 && */}
                             {/* chosen.length === 5 ? '/result': '' */}
-                                <Link to={''} 
+                                <Link to={'/result'} 
                                     className='text-decoration-none text-white'
                                     onClick={chosen.length === 5 ? handleChosen : ''}>
                                     <button className={`mx-4 mb-4 px-5 py-3 text-white fw-bold btn opacity-75 ${chosen.length === 5? 'btn-primary':'disabled btn-secondary'}`}>
