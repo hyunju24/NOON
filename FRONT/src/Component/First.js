@@ -7,14 +7,7 @@ import '../CSS/First.css'
 
 
 function First() {
-    const imgData = [
-        ['https://image-comic.pstatic.net/webtoon/703844/thumbnail/thumbnail_IMAG21_4122261748397257571.jpg',
-        'https://image-comic.pstatic.net/webtoon/761722/thumbnail/thumbnail_IMAG21_8ad71820-0c48-418a-89e9-5c001e393f54.jpg'],
-        ['https://image-comic.pstatic.net/webtoon/641253/thumbnail/thumbnail_IMAG21_01672165-03c8-44b1-ba0e-ef82c9cfcd10.jpg',
-        'https://image-comic.pstatic.net/webtoon/790713/thumbnail/thumbnail_IMAG21_3919364435331003700.jpg'],
-        ['https://image-comic.pstatic.net/webtoon/807306/thumbnail/thumbnail_IMAG21_69a712a4-11e8-48bf-9b0c-a26f28c405d8.jpg',
-        'https://image-comic.pstatic.net/webtoon/801589/thumbnail/thumbnail_IMAG21_1b439234-e17d-4fb8-9eef-5d2d4173234c.jpg'],
-    ]
+
     const [fullscreen, setFullscreen] = useState(true);
     const [show, setShow] = useState(false);
     function handleShow(breakpoint) {

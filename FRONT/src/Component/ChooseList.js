@@ -25,7 +25,6 @@ function ChooseList() {
     // const baseURL = ',
     // "proxy": "http://10.10.223.67:8000'
 
-    const sameDrawingList = useRecoilState(sameDrawing)[0]
 
     useEffect (()=> {
         if (toonAllList.length === 0 & popular.length === 0) {
@@ -120,7 +119,7 @@ function ChooseList() {
                             {/* <div className="col"> */}
                                 {popular.map(d => {
                                     return(
-                                        <ToonCard data={d}/>
+                                        <ToonCard data={d} name={'chooseList'}/>
                                     )
                                 })}
                             {/* </div> */}
@@ -135,7 +134,7 @@ function ChooseList() {
                         <div className="row justify-content-center">
                             {filteredList.map(filtered => {
                                 return(
-                                    <ToonCard data={filtered} />
+                                    <ToonCard data={filtered} name={'chooseList'}/>
                                 )
                             })}
                         </div>
@@ -147,18 +146,18 @@ function ChooseList() {
                 <div>
                     <div className="row">
                         <div className="col-2">
-                            <h5 className='mt-3 mb-0'>❤️ 내가 선택한 웹툰 목록</h5>
+                            <h5 className='mt-3 mb-0'>❤️ 내가 선택한 웹툰</h5>
 
                         </div>
                         <div className="col-8">
-                            <div className='d-flex justify-content-start'>
-                                        {chosen.map(d => {
-                                                return(
-                                                    <div>
-                                                        <ToonCard data={d}/>
-                                                    </div>
-                                                )
-                                        })}
+                            <div className='d-flex justify-content-around'>
+                                {chosen.map(d => {
+                                        return(
+                                            <div>
+                                                <ToonCard data={d} name={'chooseList'}/>
+                                            </div>
+                                        )
+                                })}
                             </div>
                         </div>
                         <div className="d-flex col-2 align-items-end">

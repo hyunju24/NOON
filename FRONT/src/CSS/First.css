@@ -63,7 +63,7 @@ html, body {
 }
 .jumping {
     animation: jump .6s ease-in-out;
-    animation-iteration-count: 5;
+    animation-iteration-count: 10;
 }
 
 @keyframes jump {
@@ -112,4 +112,8 @@ html, body {
   to {
     opacity: 1;
   }
+}
+
+.hover-card:hover {
+  opacity: 0.5;
 }
