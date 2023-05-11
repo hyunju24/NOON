@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import ToonCard from "./ToonCard";
 import {allList, chosenList} from '../app/store'
 import {useRecoilState} from 'recoil'
+import axios from 'axios'
 
 
 function ChooseList() {
@@ -13,6 +14,16 @@ function ChooseList() {
     const [isFiltered, setIsFiltered] = useState(0)
     const [filteredList, setIsFilteredList] = useState([])
     const lengthOfToons = toonAllList.length
+
+    // create될 떄 axios 보내서 webtoon list 전체 받아오기
+    // useEffect (()=> {
+    //     axios.get('http://10.10.223.67:8000/sql_read_col', 
+    //     {withCredentials: true})
+    //     // 받아온 res를 recoil에 저장
+    //     .then((res) => console.log(res))
+        
+    // })
+
 
     useEffect(() => {
         // toonAllList.forEach((toon) => console.log(toon))
