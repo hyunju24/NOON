@@ -2,13 +2,16 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import ToonCard from "./ToonCard";
-import {allList, chosenList} from '../app/store'
-import {useRecoilState} from 'recoil'
+import {allList, chosenList, popularList} from '../app/store'
+import {useRecoilState, useSetRecoilState} from 'recoil'
 import axios from 'axios'
 
 
 function ChooseList() {
     const toonAllList = useRecoilState(allList)[0]
+    const setToonAllList = useSetRecoilState(allList)
+    const popular = useRecoilState(popularList)[0]
+    const setPopular = useSetRecoilState(popularList)
     const chosen = useRecoilState(chosenList)[0]
     const [isChosen, setIsChosen] = useState(0)
     const [isFiltered, setIsFiltered] = useState(0)
@@ -16,13 +19,28 @@ function ChooseList() {
     const lengthOfToons = toonAllList.length
 
     // create될 떄 axios 보내서 webtoon list 전체 받아오기
-    // useEffect (()=> {
-    //     axios.get('http://10.10.223.67:8000/sql_read_col', 
-    //     {withCredentials: true})
-    //     // 받아온 res를 recoil에 저장
-    //     .then((res) => console.log(res))
+    useEffect (()=> {
+        // 인기 웹툰 5개
+        axios({
+            url: '/top_web',
+            method: 'get',
+            withCredentials: true,
+        })
+        .then(res => {
+            console.log(res.data);
+            setPopular(res.data)
+        })
         
-    // })
+        // 웹툰 전체 리스트
+        axios({
+            url: '/sql_read_col',
+            method: 'get',
+            withCredentials: true,
+        })
+        .then(res => {
+            setToonAllList(res.data)
+        })
+    }, [])
 
 
     useEffect(() => {
@@ -48,6 +66,23 @@ function ChooseList() {
         }
     }
 
+    function handleChosen() {
+        // const baseURL = 'http://10.10.223.67:8000'/
+        const onlyId = []
+        for (const item of chosen) {
+            onlyId.push(item.titleId)
+        }
+        console.log(onlyId); 
+        axios({
+            url: '/get_webtoon',
+            method: 'post',
+            data: onlyId
+        })
+        .then(res => {
+            console.log(res);
+        })
+    }
+
 
 
     return (
@@ -70,7 +105,7 @@ function ChooseList() {
                         </div>
                         <div className="row justify-content-center">
                             {/* <div className="col"> */}
-                                {toonAllList.map(d => {
+                                {popular.map(d => {
                                     return(
                                         <ToonCard data={d}/>
                                     )
@@ -115,7 +150,10 @@ function ChooseList() {
                         </div>
                         <div className="d-flex col-2 align-items-end">
                             {/* {chosen.length === 5 && */}
-                                <Link to={chosen.length === 5 ? '/result': ''} className='text-decoration-none text-white'>
+                            {/* chosen.length === 5 ? '/result': '' */}
+                                <Link to={''} 
+                                    className='text-decoration-none text-white'
+                                    onClick={chosen.length === 5 ? handleChosen : ''}>
                                     <button className={`mx-4 mb-4 px-5 py-3 text-white fw-bold btn opacity-75 ${chosen.length === 5? 'btn-primary':'disabled btn-secondary'}`}>
                                         결과 보기
                                     </button>

@@ -10,7 +10,7 @@ function ToonCard({data}) {
   // const setChosen = useSetRecoilState(chosenList)
 
   const addChosen = (tid, tle, path) => {
-    console.log('log', tid, tle, path);
+    // console.log('log', tid, tle, path);
     setChosen((prev)=> [
       {titleId: tid, title: tle, imgPath: path}, ...prev])
   }
@@ -21,7 +21,7 @@ function ToonCard({data}) {
     let idx = 0
     for (const c of chosen) {
       if (c.titleId === data.titleId) {
-        console.log(idx);
+        // console.log(idx);
         newList.splice(idx, 1)
         setChosen(newList)
       }
