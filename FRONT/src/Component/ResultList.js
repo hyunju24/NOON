@@ -38,11 +38,11 @@ function ResultList() {
                                 <div className="row mb-2">
                                     <h5 className="fw-bold text-center mt-2 mt-2">❤️ 내가 선택한 웹툰</h5>   
                                 </div>
-                                <div className="row justify-content-center">
+                                <div className="row justify-content-center mt-5">
                                     {/* <div className="col"> */}
                                         {chosen.map(d => {
                                             return(
-                                                <ToonCard data={d} name={'resultList'}/>
+                                                <ToonCard data={d} name={'resultList'} size={8.5}/>
                                             )
                                         })}
                                     {/* </div> */}
@@ -59,7 +59,7 @@ function ResultList() {
                                     {/* <div className="col"> */}
                                         {sameDrawingList.map((d, idx) => {
                                             return(
-                                                <ToonCard data={d} name={'resultList'} idx={idx}/>
+                                                <ToonCard data={d} name={'resultList'} idx={idx} size={8.5}/>
                                             )
                                         })}
                                     {/* </div> */}
@@ -75,7 +75,7 @@ function ResultList() {
                                     {/* <div className="col"> */}
                                         {sameLineList.map((d, idx) => {
                                             return(
-                                                <ToonCard data={d} name={'resultList'} idx={idx}/>
+                                                <ToonCard data={d} name={'resultList'} idx={idx} size={8.5}/>
                                             )
                                         })}
                                     {/* </div> */}

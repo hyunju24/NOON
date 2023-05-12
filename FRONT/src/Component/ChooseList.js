@@ -27,7 +27,8 @@ function ChooseList() {
 
 
     useEffect (()=> {
-        if (toonAllList.length === 0 & popular.length === 0) {
+        const saved = localStorage.getItem('recoil-persist');
+        if (saved === null) {
             // 인기 웹툰 5개
             axios({
                 url: '/top_web',
@@ -119,7 +120,7 @@ function ChooseList() {
                             {/* <div className="col"> */}
                                 {popular.map(d => {
                                     return(
-                                        <ToonCard data={d} name={'chooseList'}/>
+                                        <ToonCard data={d} name={'chooseList'} size={9} marginClass={"mx-3"}/>
                                     )
                                 })}
                             {/* </div> */}
@@ -150,11 +151,11 @@ function ChooseList() {
 
                         </div>
                         <div className="col-8">
-                            <div className='d-flex justify-content-around'>
+                            <div className='d-flex justify-content-start'>
                                 {chosen.map(d => {
                                         return(
                                             <div>
-                                                <ToonCard data={d} name={'chooseList'}/>
+                                                <ToonCard data={d} name={'chooseList'} size={9} marginClass={"mx-3"}/>
                                             </div>
                                         )
                                 })}

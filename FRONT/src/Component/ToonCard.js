@@ -3,7 +3,7 @@ import {chosenList} from '../app/store'
 import { useRecoilState } from 'recoil';
 
 
-function ToonCard({data, name, idx}) {
+function ToonCard({data, name, idx, size, marginClass}) {
   const [chosen, setChosen] = useRecoilState(chosenList)
   // const [nowChosen, setNowChosen] = useState(alreadyChosen)
 
@@ -59,7 +59,7 @@ function ToonCard({data, name, idx}) {
   
 
   return (
-    <Card style={{ width: '8rem', cursor: 'pointer' }} className='hover-card my-1 mx-1 bg-transparent pe-auto border border-0' 
+    <Card style={{ width: `${size}rem`, cursor: 'pointer' }} className={`hover-card ${marginClass} my-1 bg-transparent pe-auto border border-0`} 
       onClick={name === 'chooseList' ? handleCard : (event) => openLink(event, data.titleId)}>
       <Card.Img variant="top" src={data.imgPath} className='mt-2'/>
       <Card.Body className='rounded px-0'>
