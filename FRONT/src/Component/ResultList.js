@@ -1,18 +1,18 @@
-import { Link } from "react-router-dom"
-import { sameLine, sameDrawing } from "../app/store"
+import { Link, Navigate } from "react-router-dom"
+import { sameLine, sameDrawing, chosenList, isClicked } from "../app/store"
 import { useRecoilState } from "recoil"
 import ToonCard from "./ToonCard"
+import { useEffect } from "react"
 
 
 function ResultList() {
-    // const toonAllList = useRecoilState(allList)[0]
     const sameLineList = useRecoilState(sameLine)[0]
     const sameDrawingList = useRecoilState(sameDrawing)[0]
-
+    const chosen = useRecoilState(chosenList)[0]
 
     return (
         <div className='pt-0'>
-            <div className="mx-5 mt-3">
+            <div className="mx-3 mt-3">
                 <div className="row ms-5">
                     <Link to='/'>
                         <img src='img/logo-green.png' alt='logo' width={'130px'}/>
@@ -30,39 +30,61 @@ function ResultList() {
                     </div>
                 </div>
 
-                {/* 그림체가 비슷한 웹툰 */}
-                <div className="container pt-3 rounded border border-0 bg-white-op">
-                    <div className="row mb-2">
-                        <h5 className="fw-bold text-center">🎨 그림체가 비슷한 웹툰</h5>   
-                    </div>
-                    <div className="row justify-content-center">
-                        {/* <div className="col"> */}
-                            {sameDrawingList.map(d => {
-                                return(
-                                    <ToonCard data={d}/>
-                                )
-                            })}
-                        {/* </div> */}
+                <div className="container mx-auto p-0">
+                    <div className="row">
+                        <div className="col-4 pt-3 rounded border border-0 bg-white-op">
+                        <div className="container">
+                                <div className="row mb-2">
+                                    <h5 className="fw-bold text-center mt-2 mt-2">❤️ 내가 선택한 웹툰</h5>   
+                                </div>
+                                <div className="row justify-content-center mt-5">
+                                    {/* <div className="col"> */}
+                                        {chosen.map(d => {
+                                            return(
+                                                <ToonCard data={d} name={'resultList'} size={8.5} textAlign={'text-center'}/>
+                                            )
+                                        })}
+                                    {/* </div> */}
+                                </div>
+                            </div>
+                        </div>
+                        <div className="col-8">
+                            {/* 그림체가 비슷한 웹툰 */}
+                            <div className="container pt-3 rounded border border-0 bg-white-op">
+                                <div className="row mb-2">
+                                    <h5 className="fw-bold text-center mt-2">🎨 그림체가 비슷한 웹툰</h5>   
+                                </div>
+                                <div className="row justify-content-center">
+                                    {/* <div className="col"> */}
+                                        {sameDrawingList.map((d, idx) => {
+                                            return(
+                                                <ToonCard data={d} name={'resultList'} idx={idx} size={9} textAlign={'text-start'}/>
+                                            )
+                                        })}
+                                    {/* </div> */}
+                                </div>
+                            </div>
+
+                            {/* 줄거리가 비슷한 웹툰 */}
+                            <div className="container mt-2 pt-3 rounded border border-0 bg-white-op">
+                                <div className="row mb-2">
+                                    <h5 className="fw-bold text-center mt-2">✒️ 줄거리가 비슷한 웹툰</h5>   
+                                </div>
+                                <div className="row justify-content-center">
+                                    {/* <div className="col"> */}
+                                        {sameLineList.map((d, idx) => {
+                                            return(
+                                                <ToonCard data={d} name={'resultList'} idx={idx} size={9} textAlign={'text-start'}/>
+                                            )
+                                        })}
+                                    {/* </div> */}
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                {/* 줄거리가 비슷한 웹툰 */}
-                <div className="container mt-5 pt-3 rounded border border-0 bg-white-op">
-                    <div className="row mb-2">
-                        <h5 className="fw-bold text-center">✒️ 줄거리가 비슷한 웹툰</h5>   
-                    </div>
-                    <div className="row justify-content-center">
-                        {/* <div className="col"> */}
-                            {sameLineList.map(d => {
-                                return(
-                                    <ToonCard data={d}/>
-                                )
-                            })}
-                        {/* </div> */}
-                    </div>
-                </div>
-
-                   
+                
             </div>
         </div>
     )
