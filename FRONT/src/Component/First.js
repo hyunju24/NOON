@@ -21,6 +21,12 @@ function First() {
         setFullscreen(breakpoint);
         setShow(true);
       }
+    
+    function handleChosenToNull() {
+        setChosen([])
+        setSameLine([])
+        setSameDrawing([])
+    }
 
   return (
     <div className="mx-auto wrapper">
@@ -32,7 +38,7 @@ function First() {
             </h1>
             <div className="d-flex justify-content-center mt-5">
                 <Link to='/list'>
-                    <button className="mx-4 px-5 py-3 text-white btn btn-primary opacity-75">
+                    <button className="mx-4 px-5 py-3 text-white btn btn-primary opacity-75" onClick={handleChosenToNull}>
                             시작하기
                     </button>
                 </Link>
