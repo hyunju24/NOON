@@ -3,7 +3,8 @@ import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import '../CSS/First.css'
-
+import { chosenList, sameDrawing, sameLine } from '../app/store';
+import { useSetRecoilState } from 'recoil';
 
 
 function First() {
