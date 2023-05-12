@@ -3,11 +3,10 @@ import {chosenList} from '../app/store'
 import { useRecoilState } from 'recoil';
 
 
-function ToonCard({data}) {
+function ToonCard({data, name, idx, size, marginClass, textAlign}) {
   const [chosen, setChosen] = useRecoilState(chosenList)
-  // const [nowChosen, setNowChosen] = useState(alreadyChosen)
 
-  // const setChosen = useSetRecoilState(chosenList)
+  const prize = ['🥇', '🥈', '🥉', '🏅', '🏅']
 
   const addChosen = (tid, tle, path) => {
     // console.log('log', tid, tle, path);
@@ -50,13 +49,20 @@ function ToonCard({data}) {
     }
     
   }
+
+  function openLink(event, id) {
+    // console.log(event, id)
+    window.open(`https://comic.naver.com/webtoon/list?titleId=${id}`, '_blank')
+  }
   
 
   return (
-    <Card style={{ width: '9rem', cursor: 'pointer' }} className='my-1 mx-3 bg-transparent pe-auto border border-0' onClick={handleCard}>
+    <Card style={{ width: `${size}rem`, cursor: 'pointer' }} className={`hover-card ${marginClass} my-1 bg-transparent pe-auto border border-0`} 
+      onClick={name === 'chooseList' ? handleCard : (event) => openLink(event, data.titleId)}>
       <Card.Img variant="top" src={data.imgPath} className='mt-2'/>
-      <Card.Body className='px-1 rounded'>
-        <Card.Title style={{fontSize: '0.8rem'}} className='fw-bold text-center mb-0 text-truncate'>{data.title}</Card.Title>
+      <Card.Body className='rounded px-0 pt-1'>
+        <Card.Title style={{fontSize: '0.8rem'}} className={`fw-bold mb-0 text-truncate ${textAlign}`}>
+          <span style={{fontSize: '1.6rem'}}>{prize[idx]}</span> {data.title}</Card.Title>
         {/* {data.titleId} */}
       </Card.Body>
     </Card>
