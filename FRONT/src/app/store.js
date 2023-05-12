@@ -12,6 +12,7 @@ export const allList = atom({
 export const chosenList = atom({
     key: 'chosenList',
     default: [],
+    effects_UNSTABLE: [persistAtom]
 });
 
 export const popularList = atom({
@@ -22,10 +23,12 @@ export const popularList = atom({
 
 export const sameLine = atom({
     key: 'sameLine',
-    default: []
+    default: [],
+    effects_UNSTABLE: [persistAtom]
 })
 
 export const sameDrawing = atom({
     key: 'sameDrawing',
-    default: []
+    default: [],
+    effects_UNSTABLE: [persistAtom]
 })
