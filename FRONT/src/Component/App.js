@@ -11,6 +11,7 @@ function App() {
                 <Route path="/" element={<First />}/>
                 <Route path="/list" element={<ChooseList />}/>
                 <Route path='/result' element={<ResultList />}/>
+                <Route path='/redirect' element={ <Navigate to='/list'/>}></Route>
             </Routes>
         </BrowserRouter>
     )
