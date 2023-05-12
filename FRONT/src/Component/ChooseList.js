@@ -19,7 +19,10 @@ function ChooseList() {
     const [isChosen, setIsChosen] = useState(0)
     const [isFiltered, setIsFiltered] = useState(0)
     const [filteredList, setIsFilteredList] = useState([])
+    // const setIsClickedNext = useSetRecoilState(isClicked)
+
     const lengthOfToons = toonAllList.length
+    const navigate = useNavigate()
 
     // create될 떄 axios 보내서 webtoon list 전체 받아오기
     // const baseURL = ',
@@ -28,7 +31,9 @@ function ChooseList() {
     const sameDrawingList = useRecoilState(sameDrawing)[0]
 
     useEffect (()=> {
-        if (toonAllList.length === 0 & popular.length === 0) {
+        const saved = localStorage.getItem('recoil-persist');
+        // console.log(saved.toonAllList);
+        if (saved.allList === undefined & saved.popularList === undefined) {
             // 인기 웹툰 5개
             axios({
                 url: '/top_web',
@@ -78,22 +83,26 @@ function ChooseList() {
     }
 
     function handleChosen() {
-        // const baseURL = 'http://10.10.223.67:8000'/
-        const onlyId = []
-        for (const item of chosen) {
-            onlyId.push(item.titleId)
+       if (chosen.length === 5) {
+            const onlyId = []
+            for (const item of chosen) {
+                onlyId.push(item.titleId)
+            }
+            // console.log(onlyId); 
+            axios({
+                url: '/get_webtoon',
+                method: 'post',
+                data: onlyId
+            })
+            .then(res => {
+                console.log(res.data.items1, res.data.items2);
+                setSameLineList(res.data.items1)
+                setSameDrawingList(res.data.items2)
+                navigate("/result");
+            })
+        } else {
+            window.alert('웹툰 5개를 모두 선택해주세요')
         }
-        console.log(onlyId); 
-        axios({
-            url: '/get_webtoon',
-            method: 'post',
-            data: onlyId
-        })
-        .then(res => {
-            // console.log(res.data.items1, res.data.items2);
-            setSameLineList(res.data.items1)
-            setSameDrawingList(res.data.items2)
-        })
     }
 
 
@@ -120,7 +129,7 @@ function ChooseList() {
                             {/* <div className="col"> */}
                                 {popular.map(d => {
                                     return(
-                                        <ToonCard data={d}/>
+                                        <ToonCard data={d} name={'chooseList'} size={9} marginClass={"mx-3"} textAlign={'text-center'}/>
                                     )
                                 })}
                             {/* </div> */}
@@ -135,7 +144,7 @@ function ChooseList() {
                         <div className="row justify-content-center">
                             {filteredList.map(filtered => {
                                 return(
-                                    <ToonCard data={filtered} />
+                                    <ToonCard data={filtered} data={filtered} name={'chooseList'} size={9} marginClass={"mx-3"} />
                                 )
                             })}
                         </div>
@@ -155,7 +164,7 @@ function ChooseList() {
                                         {chosen.map(d => {
                                                 return(
                                                     <div>
-                                                        <ToonCard data={d}/>
+                                                        <ToonCard data={d} name={'chooseList'} size={9} marginClass={"mx-3"} textAlign={'text-center'}/>
                                                     </div>
                                                 )
                                         })}
@@ -164,13 +173,12 @@ function ChooseList() {
                         <div className="d-flex col-2 align-items-end">
                             {/* {chosen.length === 5 && */}
                             {/* chosen.length === 5 ? '/result': '' */}
-                                <Link to={'/result'} 
-                                    className='text-decoration-none text-white'
-                                    onClick={chosen.length === 5 ? handleChosen : ''}>
+                                <div className='text-decoration-none text-white'
+                                    onClick={handleChosen}>
                                     <button className={`mx-4 mb-4 px-5 py-3 text-white fw-bold btn opacity-75 ${chosen.length === 5? 'btn-primary':'disabled btn-secondary'}`}>
                                         결과 보기
                                     </button>
-                                </Link>
+                                </div>
                         </div>
                             
                     </div> 
